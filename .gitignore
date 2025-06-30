@@ -1,7 +1,26 @@
-venv/
+# Ignore Python cache and compiled files
 __pycache__/
-*.pyc
-db.sqlite3
+*.py[cod]
+
+# Ignore virtual environments
+venv/
+ENV/
+env/
+
+# Ignore temporary or log files
+*.log
+*.pot
 *.sock
+
+# Ignore static/ and media/ by default
+static/
 media/
-staticfiles/
+
+# Ignore all SQLite DBs
+*.sqlite3
+
+# -- EXCEPTIONS -- #
+!staticfiles/
+!media/
+!db.sqlite3
+

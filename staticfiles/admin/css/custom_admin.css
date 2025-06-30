@@ -1,0 +1,26 @@
+/* Make sure submit buttons are always visible */
+.submit-row {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+    margin: 0;
+    text-align: right;
+}
+
+.submit-row input[type="submit"] {
+    display: inline-block !important;
+    margin-left: 10px;
+}
+
+/* Style for the top save buttons */
+.object-tools {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    padding: 10px 0;
+    margin: 0;
+} 
