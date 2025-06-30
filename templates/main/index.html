@@ -1,0 +1,1593 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>4th Dimension | Transform Your Space</title>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <style>
+            * {
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+}
+
+.gradient-overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+}
+
+.testimonial-strip {
+    animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.service-card {
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.portfolio-item {
+    transition: all 0.5s ease;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.05);
+}
+
+.custom-shape {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 70px;
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #D4AF37;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.contact-form input, .contact-form textarea {
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    transform: translateX(10px);
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+    }
+}
+
+.testimonials-container {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.testimonials-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+}
+
+.testimonial-card {
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Pause animation on hover */
+.testimonials-container:hover .testimonials-track {
+    animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .testimonial-card {
+        min-width: 300px;
+    }
+}
+
+.image-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: all 1.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.gradient-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.6)
+    );
+    z-index: 2;
+}
+
+/* Ken Burns effect */
+@keyframes kenBurns {
+    0% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.slide.active {
+    animation: kenBurns 15s ease-in-out infinite alternate;
+}
+
+/* Fade transition */
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    33.33% { opacity: 1; }
+    53.33% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+#map {
+    width: 100%;
+    height: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.nav-link.button {
+    margin-left: 1rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #CA8A04; /* yellow-600 */
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.nav-link.button:hover {
+    background-color: #D4AF37; /* yellow-700 */
+}
+
+.faq-item {
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #fafafa;
+}
+
+.faq-answer {
+    transform-origin: top;
+}
+
+@media (max-width: 768px) {
+    .faq-question span {
+        font-size: 1rem;
+    }
+}
+
+/* Message animations */
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+.message-show {
+    animation: slideIn 0.3s forwards;
+}
+
+.message-hide {
+    animation: slideOut 0.3s forwards;
+}
+
+.message-success { background-color: #DEF7EC; }
+.message-success i { color: #059669; }
+
+.message-error { background-color: #FDE8E8; }
+.message-error i { color: #DC2626; }
+
+/* FAQ Styles */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Adjust this value based on your content */
+}
+
+.faq-question .bi-plus {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question .bi-plus {
+    transform: rotate(45deg);
+}
+
+/* Testimonials Animation */
+.testimonials-container {
+    width: 100%;
+    position: relative;
+}
+
+.testimonials-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Optional: Pause animation on hover */
+.testimonials-track:hover {
+    animation-play-state: paused;
+}
+        .image-slider {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .text-shadow-lg {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5),4px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .gradient-overlay {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+        }
+        /* Testimonials Animation */
+.testimonials-container {
+    width: 100%;
+    position: relative;
+}
+
+.testimonials-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+    width: max-content;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+/* FAQ Styles */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Adjust this value based on your content */
+}
+
+.faq-question .bi-plus {
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-question .bi-plus {
+    transform: rotate(45deg);
+}
+/* Optional: Pause animation on hover */
+.testimonials-track:hover {
+    animation-play-state: paused;
+}
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    /* Adjust logo size for mobile */
+    nav img {
+        height: 50px !important;
+    }
+
+    /* Mobile menu container */
+    #mobile-menu {
+        transition: all 0.3s ease-in-out;
+        backdrop-filter: blur(10px);
+    }
+
+    /* Mobile menu links */
+    #mobile-menu a {
+        font-size: 1.25rem;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    #mobile-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Mobile menu close button */
+    #mobile-menu button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    #mobile-menu button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Adjust main navigation for mobile */
+    nav .container {
+        padding: 0.5rem 1rem;
+    }
+
+    /* Mobile menu toggle button */
+    nav button.md\:hidden {
+        padding: 0.5rem;
+        margin-right: 0.5rem;
+        border-radius: 0.375rem;
+        transition: all 0.3s ease;
+    }
+
+    nav button.md\:hidden:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    /* Animation for mobile menu */
+    #mobile-menu.hidden {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    #mobile-menu:not(.hidden) {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Additional mobile menu animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+    </style>
+    </head>
+    <body>
+        <!-- Add this right after opening body tag -->
+        <div id="custom-alert"
+            class="fixed inset-0 flex items-center justify-center z-50 hidden">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div
+                class="bg-white rounded-lg shadow-xl p-6 max-w-sm w-full mx-4 relative transform scale-0 transition-transform duration-300">
+                <div class="text-center">
+                    <i
+                        class="bi bi-check-circle text-4xl text-green-500 mb-4"></i>
+                    <p id="alert-message"
+                        class="text-gray-800 text-lg mb-6"></p>
+                    <button onclick="closeAlert()"
+                        class="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition duration-300">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Container -->
+        <div id="message-container"
+            class="fixed top-0 right-0 m-4 z-50 transform translate-x-full transition-transform duration-300">
+            <div
+                class="bg-white rounded-lg shadow-lg p-4 flex items-center space-x-3">
+                <i id="message-icon" class="text-2xl"></i>
+                <p id="message-text" class="text-gray-800"></p>
+                <button onclick="closeMessage()"
+                    class="text-gray-400 hover:text-gray-600">
+                    <i class="bi bi-x text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm shadow-lg">
+            <div class="container mx-auto px-4 py-3">
+                <div class="flex justify-between items-center">
+                    <a href="#home">
+                        <img src="{% static 'images/logo.svg' %}"
+                            alt="4th Dimension Logo"
+                            class="h-20 transform scale-[1]">
+                    </a>
+                    <div class="hidden md:flex space-x-6 items-center">
+                        <a href="#home"
+                            class="nav-link text-gray-600 hover:text-gray-900">Home</a>
+                        <a href="#about"
+                            class="nav-link text-gray-600 hover:text-gray-900">About</a>
+                        <a href="#services"
+                            class="nav-link text-gray-600 hover:text-gray-900">Services</a>
+                        <a href="#portfolio"
+                            class="nav-link text-gray-600 hover:text-gray-900">Portfolio</a>
+                        <a href="{% url 'home' %}#contact"
+                            class="bg-[#fcaa0c] text-gray-900 px-4 py-2 rounded-md hover:bg-[#e69a0b] transition duration-300">Get
+                            in Touch</a>
+                    </div>
+                    <button class="md:hidden" onclick="toggleMenu()">
+                        <i class="bi bi-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-black/90 z-40 hidden">
+    <div class="flex flex-col items-center justify-center h-full space-y-8">
+        <a href="#home" class="text-white text-xl hover:text-yellow-600 transition-colors duration-300">Home</a>
+        <a href="#about" class="text-white text-xl hover:text-yellow-600 transition-colors duration-300">About</a>
+        <a href="#services" class="text-white text-xl hover:text-yellow-600 transition-colors duration-300">Services</a>
+        <a href="#portfolio" class="text-white text-xl hover:text-yellow-600 transition-colors duration-300">Portfolio</a>
+        <a href="#contact" class="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition duration-300">Get in Touch</a>
+        <button onclick="toggleMenu()" class="absolute top-4 right-4 text-white hover:text-yellow-600 transition-colors duration-300">
+            <i class="bi bi-x text-3xl"></i>
+        </button>
+    </div>
+</div>
+
+        <!-- Hero Section -->
+        <section id="home"
+            class="hero-section h-screen relative overflow-hidden">
+            <div class="image-slider">
+                <div class="slide active">
+                    <img src="{% static 'images/hero1.jpeg' %}"
+                        alt="Hero Image 1" class="w-full h-full object-cover">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/hero2.jpeg' %}"
+                        alt="Hero Image 2" class="w-full h-full object-cover">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/hero3.jpeg' %}"
+                        alt="Hero Image 3" class="w-full h-full object-cover">
+                </div>
+                <div class="slide">
+                    <img src="{% static 'images/hero4.png' %}"
+                        alt="Hero Image 4" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div
+                class="gradient-overlay absolute inset-0 flex items-center justify-center">
+                <div class="text-center" data-aos="fade-up">
+                    <h1
+                        class="text-4xl md:text-6xl font-bold mb-4 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                        <span id="main-title"
+                            class="typewrite text-shadow-lg"></span>
+                    </h1>
+                    <p
+                        class="text-xl mb-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                        <span id="sub-title"
+                            class="typewrite text-shadow-lg"></span>
+                    </p>
+                    <a href="#contact"
+                        class="bg-yellow-600 text-white px-8 py-3 rounded-lg hover:bg-yellow-700 transition duration-300 shadow-lg">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">About Us</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">We bring your
+                        vision to life through innovative design solutions and
+                        exceptional attention to detail.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <i class="bi bi-star text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Experience</h3>
+                        <p class="text-gray-600">Over 15 years of creating
+                            beautiful spaces that inspire and delight.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <i
+                            class="bi bi-people text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Expert Team</h3>
+                        <p class="text-gray-600">Our designers bring creativity
+                            and expertise to every project.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <i
+                            class="bi bi-heart text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Client Focus</h3>
+                        <p class="text-gray-600">Your satisfaction is our top
+                            priority in every design decision.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Our Services</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Comprehensive
+                        design solutions tailored to your needs.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <i
+                            class="bi bi-house text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Residential
+                            Design</h3>
+                        <p class="text-gray-600">Transform your home into a
+                            beautiful and functional space.</p>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <i
+                            class="bi bi-building text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Commercial
+                            Design</h3>
+                        <p class="text-gray-600">Create inspiring workspaces
+                            that boost productivity.</p>
+                    </div>
+                    <div class="service-card bg-white p-8 rounded-lg shadow-lg"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <i
+                            class="bi bi-rulers text-4xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-4">Space Planning</h3>
+                        <p class="text-gray-600">Optimize your space for maximum
+                            efficiency and comfort.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Our Portfolio</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">A showcase of our
+                        finest work and transformations.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    {% for category in categories %}
+                    <a
+                        href="{% url 'portfolio_detail' category=category.slug %}"
+                        class="portfolio-item rounded-lg overflow-hidden shadow-lg"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative group">
+                            <img src="{{ category.image.url }}"alt="{{ category.title }}"class="w-full h-64 object-cover transition duration-300 group-hover:scale-110">
+                            <div
+                                class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                                <h3 class="text-white text-xl font-bold">{{category.title }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Strip Section -->
+        <section class="testimonials-strip-section py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">What Our Clients
+                        Say</h2>
+                </div>
+                <div class="testimonials-container overflow-hidden">
+                    <div class="testimonials-track flex">
+                        <!-- First Set -->
+                        <div
+                            class="testimonial-card bg-white p-8 rounded-lg shadow-lg mx-4 min-w-[300px] md:min-w-[400px]">
+                            <div class="quote text-yellow-600 text-6xl">"</div>
+                            <p class="text-gray-600 mb-6">Absolutely amazing
+                                design work! They transformed our space
+                                completely.</p>
+                            <div class="client-info flex items-center">
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/1.jpg"
+                                    alt="Client"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <div class="client-details">
+                                    <h4 class="font-bold">John Anderson</h4>
+                                    <span class="text-gray-500">Residential
+                                        Client</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="testimonial-card bg-white p-8 rounded-lg shadow-lg mx-4 min-w-[300px] md:min-w-[400px]">
+                            <div class="quote text-yellow-600 text-6xl">"</div>
+                            <p class="text-gray-600 mb-6">Professional team with
+                                exceptional attention to detail. Highly
+                                recommended!</p>
+                            <div class="client-info flex items-center">
+                                <img
+                                    src="https://randomuser.me/api/portraits/women/1.jpg"
+                                    alt="Client"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <div class="client-details">
+                                    <h4 class="font-bold">Sarah Williams</h4>
+                                    <span class="text-gray-500">Commercial
+                                        Client</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="testimonial-card bg-white p-8 rounded-lg shadow-lg mx-4 min-w-[300px] md:min-w-[400px]">
+                            <div class="quote text-yellow-600 text-6xl">"</div>
+                            <p class="text-gray-600 mb-6">They brought our
+                                vision to life better than we could have
+                                imagined.</p>
+                            <div class="client-info flex items-center">
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/2.jpg"
+                                    alt="Client"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <div class="client-details">
+                                    <h4 class="font-bold">Michael Chen</h4>
+                                    <span class="text-gray-500">Restaurant
+                                        Owner</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Duplicate Set for Seamless Loop -->
+                        <div
+                            class="testimonial-card bg-white p-8 rounded-lg shadow-lg mx-4 min-w-[300px] md:min-w-[400px]">
+                            <div class="quote text-yellow-600 text-6xl">"</div>
+                            <p class="text-gray-600 mb-6">Absolutely amazing
+                                design work! They transformed our space
+                                completely.</p>
+                            <div class="client-info flex items-center">
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/1.jpg"
+                                    alt="Client"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <div class="client-details">
+                                    <h4 class="font-bold">John Anderson</h4>
+                                    <span class="text-gray-500">Residential
+                                        Client</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="testimonial-card bg-white p-8 rounded-lg shadow-lg mx-4 min-w-[300px] md:min-w-[400px]">
+                            <div class="quote text-yellow-600 text-6xl">"</div>
+                            <p class="text-gray-600 mb-6">Professional team with
+                                exceptional attention to detail. Highly
+                                recommended!</p>
+                            <div class="client-info flex items-center">
+                                <img
+                                    src="https://randomuser.me/api/portraits/women/1.jpg"
+                                    alt="Client"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <div class="client-details">
+                                    <h4 class="font-bold">Sarah Williams</h4>
+                                    <span class="text-gray-500">Commercial
+                                        Client</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="testimonial-card bg-white p-8 rounded-lg shadow-lg mx-4 min-w-[300px] md:min-w-[400px]">
+                            <div class="quote text-yellow-600 text-6xl">"</div>
+                            <p class="text-gray-600 mb-6">They brought our
+                                vision to life better than we could have
+                                imagined.</p>
+                            <div class="client-info flex items-center">
+                                <img
+                                    src="https://randomuser.me/api/portraits/men/2.jpg"
+                                    alt="Client"
+                                    class="w-12 h-12 rounded-full mr-4">
+                                <div class="client-details">
+                                    <h4 class="font-bold">Michael Chen</h4>
+                                    <span class="text-gray-500">Restaurant
+                                        Owner</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Pricing Section (Add before FAQ section) -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Get an Estimate for Your
+                        Home</h2>
+                    <p class="text-xl text-gray-600 mb-2">Calculate the cost of
+                        doing up your home interiors now.</p>
+                    <p class="text-gray-500">Our transparent pricing helps you
+                        make informed decisions</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Full Home Package -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-2xl font-bold">Full Home
+                                    Interiors</h3>
+                                <i
+                                    class="bi bi-house-door text-3xl text-yellow-600"></i>
+                            </div>
+                            <p class="text-gray-600 mb-6">Complete interior
+                                solutions for your entire home</p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center">
+                                    <i
+                                        class="bi bi-check2 text-green-500 mr-2"></i>
+                                    <span>Customized designs for every
+                                        room</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i
+                                        class="bi bi-check2 text-green-500 mr-2"></i>
+                                    <span>Premium materials and finishes</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i
+                                        class="bi bi-check2 text-green-500 mr-2"></i>
+                                    <span>End-to-end project management</span>
+                                </li>
+                            </ul>
+                            <a href="#contact"
+                                onclick="setEstimateType('full-home')"
+                                class="block text-center bg-yellow-600 text-white py-3 px-6 rounded-lg hover:bg-yellow-700 transition duration-300">
+                                Get Free Estimate
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Modular Kitchen Package -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div class="p-8">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-2xl font-bold">Modular
+                                    Kitchen</h3>
+                                <i
+                                    class="bi bi-cup-hot text-3xl text-yellow-600"></i>
+                            </div>
+                            <p class="text-gray-600 mb-6">Custom kitchen
+                                solutions for your home</p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center">
+                                    <i
+                                        class="bi bi-check2 text-green-500 mr-2"></i>
+                                    <span>Ergonomic design layouts</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i
+                                        class="bi bi-check2 text-green-500 mr-2"></i>
+                                    <span>Quality hardware and
+                                        accessories</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i
+                                        class="bi bi-check2 text-green-500 mr-2"></i>
+                                    <span>Multiple finish options</span>
+                                </li>
+                            </ul>
+                            <a href="#contact"
+                                onclick="setEstimateType('kitchen')"
+                                class="block text-center bg-yellow-600 text-white py-3 px-6 rounded-lg hover:bg-yellow-700 transition duration-300">
+                                Get Free Estimate
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ Section -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Frequently Asked
+                        Questions</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Find answers to
+                        common questions about our interior design services</p>
+                </div>
+
+                <div class="max-w-3xl mx-auto" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item mb-4">
+                        <button
+                            class="faq-question w-full flex items-center justify-between bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <span
+                                class="text-lg font-semibold text-gray-800">How
+                                long does a typical interior design project
+                                take?</span>
+                            <i
+                                class="bi bi-plus text-2xl text-[#fcaa0c] transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-answer bg-white px-6 overflow-hidden max-h-0 transition-all duration-300">
+                            <p class="text-gray-600 py-6 border-t">The duration
+                                varies depending on the scope of work. A simple
+                                room redesign might take 2-4 weeks, while a
+                                complete home renovation could take several
+                                months. We'll provide a detailed timeline during
+                                our initial consultation.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item mb-4">
+                        <button
+                            class="faq-question w-full flex items-center justify-between bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <span
+                                class="text-lg font-semibold text-gray-800">What
+                                is your design process?</span>
+                            <i
+                                class="bi bi-plus text-2xl text-[#fcaa0c] transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-answer bg-white px-6 overflow-hidden max-h-0 transition-all duration-300">
+                            <p class="text-gray-600 py-6 border-t">Our process
+                                includes initial consultation, concept
+                                development, design presentation, procurement,
+                                and installation. We work closely with you at
+                                every step to ensure your vision comes to
+                                life.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item mb-4">
+                        <button
+                            class="faq-question w-full flex items-center justify-between bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <span class="text-lg font-semibold text-gray-800">Do
+                                you work with a specific style?</span>
+                            <i
+                                class="bi bi-plus text-2xl text-[#fcaa0c] transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-answer bg-white px-6 overflow-hidden max-h-0 transition-all duration-300">
+                            <p class="text-gray-600 py-6 border-t">We're
+                                versatile in our design approach and can work
+                                with any style from modern to traditional,
+                                minimalist to maximalist. Our focus is on
+                                creating spaces that reflect your personal style
+                                and needs.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item mb-4">
+                        <button
+                            class="faq-question w-full flex items-center justify-between bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
+                            <span
+                                class="text-lg font-semibold text-gray-800">What
+                                is your pricing structure?</span>
+                            <i
+                                class="bi bi-plus text-2xl text-[#fcaa0c] transition-transform duration-300"></i>
+                        </button>
+                        <div
+                            class="faq-answer bg-white px-6 overflow-hidden max-h-0 transition-all duration-300">
+                            <p class="text-gray-600 py-6 border-t">We offer
+                                flexible pricing options based on project scope
+                                and requirements. We provide detailed quotes
+                                after the initial consultation to ensure
+                                transparency in our pricing.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl font-bold mb-4">Get in Touch</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Ready to start
+                        your design journey? Contact us today.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="contact-form" data-aos="fade-right">
+                        <form id="contactForm" method="post" class="space-y-6"
+                            onsubmit="return false;">
+                            {% csrf_token %}
+                            <input type="hidden" name="estimate_type"
+                                id="estimateType">
+                            <div>
+                                <input type="text"
+                                    name="name"
+                                    placeholder="Your Name"
+                                    required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-600">
+                            </div>
+                            <div>
+                                <input type="email"
+                                    name="email"
+                                    placeholder="Your Email"
+                                    required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-600">
+                            </div>
+                            <div>
+                                <input type="tel"
+                                    name="phone"
+                                    placeholder="Your Phone Number"
+                                    pattern="[0-9]{10}"
+                                    title="Please enter a valid 10-digit phone number"
+                                    required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-600"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)">
+                            </div>
+                            <div>
+                                <textarea
+                                    name="message"
+                                    placeholder="Your Message"
+                                    rows="5"
+                                    required
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-600"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="bg-yellow-600 text-white px-8 py-3 rounded-lg hover:bg-yellow-700 transition duration-300 w-full">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <div class="contact-info space-y-6" data-aos="fade-left">
+                        <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Cooke Town&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://embed-googlemap.com">embed-googlemap.com</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
+                        <div class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4">
+                                    <i
+                                        class="bi bi-telephone text-2xl text-yellow-600"></i>
+                                    <div>
+                                        <h3
+                                            class="font-bold text-gray-800">Phone</h3>
+                                        <a href="tel:+91 9980008943"
+                                            class="text-gray-600 hover:text-yellow-600 transition duration-300">
+                                            +91 9980008943 <br>
+                                            +91 9611067263
+
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <i
+                                        class="bi bi-envelope text-2xl text-yellow-600"></i>
+                                    <div>
+                                        <h3
+                                            class="font-bold text-gray-800">Email</h3>
+                                        <a href="mailto:fourthdimension@gmail.com"
+                                            class="text-gray-600 hover:text-yellow-600 transition duration-300">
+                                            fourthdimension@gmail.com
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4">
+                                    <i
+                                        class="bi bi-geo-alt text-2xl text-yellow-600"></i>
+                                    <div>
+                                        <h3
+                                            class="font-bold text-gray-800">Address</h3>
+                                        <p class="text-gray-600">Utsav
+                                            Cooke Town, Bengaluru,
+                                            Karnataka 560005</p>
+                                        <a
+                                            href="https://www.google.com/maps/place/Cooke+Town,+Bengaluru,+Karnataka/@13.0029174,77.6178376,16z/data=!3m1!4b1!4m6!3m5!1s0x3bae16e58a1fa19d:0x156309b4fe8a693b!8m2!3d13.0031678!4d77.6228252!16s%2Fg%2F11bwnd0lwq?hl=en&entry=ttu&g_ep=EgoyMDI0MTIxMS4wIKXMDSoASAFQAw%3D%3D"
+                                            target="_blank"
+                                            class="text-yellow-600 hover:text-yellow-700 text-sm">
+                                            Get Directions →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-10">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <a href="#home">
+                            <img src="{% static 'images/Fourth1.svg' %}"
+                                alt="4th Dimension Logo"
+                                class="h-20 transform scale-[2.8]" style="
+                                padding-left: 25px;">
+                        </a>
+                        <p class="text-gray-400">Transform your space with
+                            expert design solutions.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Contact</h3>
+                        <p class="text-gray-400">Email:
+                            fourthdimension@gmail.com</p>
+                        <p class="text-gray-400">Phone: +91 9980008943</p>
+                        <p class="text-gray-400">Alternate: +91 9611067263</p>
+
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300">
+                                <i class="bi bi-instagram text-2xl"></i>
+                            </a>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300">
+                                <i class="bi bi-facebook text-2xl"></i>
+                            </a>
+                            <a href="#"
+                                class="text-gray-400 hover:text-white transition duration-300">
+                                <i class="bi bi-pinterest text-2xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                    <p class="text-gray-400">&copy; 2024 4th Dimension. All
+                        rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"></script>
+        <script>
+        function startSlider() {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        document.addEventListener('DOMContentLoaded', startSlider);
+    </script>
+        <script>
+// FAQ Toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            // Get the parent faq-item
+            const faqItem = this.closest('.faq-item');
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = this.querySelector('.bi-plus');
+            
+            // Toggle active class
+            faqItem.classList.toggle('active');
+            
+            // Toggle answer visibility
+            if (faqItem.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(45deg)';
+            } else {
+                answer.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            }
+            
+            // Close other FAQs
+            faqQuestions.forEach(otherQuestion => {
+                if (otherQuestion !== this) {
+                    const otherItem = otherQuestion.closest('.faq-item');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    const otherIcon = otherQuestion.querySelector('.bi-plus');
+                    
+                    otherItem.classList.remove('active');
+                    otherAnswer.style.maxHeight = '0px';
+                    otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    });
+});
+
+// Rest of your existing code....
+// Initialize AOS
+AOS.init({
+    duration: 1000,
+    once: true
+});
+
+// Initialize Swiper
+new Swiper(".mySwiper", {
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+    },
+    loop: true,
+    autoplay: {
+        delay: 5000
+    }
+});
+
+// Mobile Menu Toggle
+function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+}
+
+// Google Maps
+function initMap() {
+    // Coordinates for Utsav apartments, Lewis Rd, Bangalore
+    const location = { lat: 13.000437, lng: 77.623794 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
+        center: location,
+        styles: [
+            {
+                "featureType": "all",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#6c6c6c"}]
+            },
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [{"color": "#e9e9e9"}]
+            },
+            {
+                "featureType": "poi",
+                "stylers": [{"visibility": "off"}]
+            },
+            {
+                "featureType": "transit",
+                "stylers": [{"visibility": "off"}]
+            }
+        ]
+    });
+
+    // Add marker for Utsav apartments
+    const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: 'Elegant Interiors'
+    });
+
+    // Update info window with correct address
+    const infowindow = new google.maps.InfoWindow({
+        content: `
+            <div style="padding: 10px;">
+                <h3 style="margin: 0 0 5px; font-weight: bold;">Elegant Interiors</h3>
+                <p style="margin: 0;">18, Lewis Rd, Bangalore</p>
+            </div>
+        `
+    });
+
+    marker.addListener('click', () => {
+        infowindow.open(map, marker);
+    });
+}
+
+// Contact Form
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); // Prevent default form submission
+    
+    try {
+        const formData = new FormData(this);
+        const response = await fetch('', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                'X-Requested-With': 'XMLHttpRequest' // Add this to identify AJAX requests
+            }
+        });
+        
+        if (response.ok) {
+            showAlert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        } else {
+            showAlert('Oops! Something went wrong. Please try again.');
+        }
+    } catch (error) {
+        showAlert('Oops! Something went wrong. Please try again.');
+    }
+});
+
+// Scroll to Top
+window.onscroll = function() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.querySelector('.scroll-to-top').classList.remove('hidden');
+    } else {
+        document.querySelector('.scroll-to-top').classList.add('hidden');
+    }
+};
+
+// Initialize Google Maps
+window.onload = function() {
+    initMap();
+};
+
+// Add this to your existing scripts
+function duplicateTestimonials() {
+    const track = document.querySelector('.testimonials-track');
+    const originalCards = track.innerHTML;
+    track.innerHTML = originalCards + originalCards; // Duplicate for seamless loop
+}
+
+// Initialize after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    duplicateTestimonials();
+});
+
+// Add to your existing scripts
+function initImageSlider() {
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    
+    function nextSlide() {
+        // Remove active class from current slide
+        slides[currentSlide].classList.remove('active');
+        
+        // Move to next slide
+        currentSlide = (currentSlide + 1) % slides.length;
+        
+        // Add active class to new slide
+        slides[currentSlide].classList.add('active');
+    }
+    
+    // Preload images for smooth transitions
+    slides.forEach(slide => {
+        const bgImg = slide.style.backgroundImage.match(/url\(['"]?([^'"]+)['"]?\)/)[1];
+        const img = new Image();
+        img.src = bgImg;
+    });
+    
+    // Set initial slide
+    slides[0].classList.add('active');
+    
+    // Change slide every 6 seconds
+    setInterval(nextSlide, 6000);
+}
+
+// Initialize slider when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initImageSlider();
+});
+
+// Add to your existing scripts
+document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.bi-plus');
+        
+        question.addEventListener('click', () => {
+            // Close all other FAQs
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    const otherIcon = otherItem.querySelector('.bi-plus');
+                    otherAnswer.style.maxHeight = '0';
+                    otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ
+            const isOpen = answer.style.maxHeight !== '0px' && answer.style.maxHeight !== '';
+            answer.style.maxHeight = isOpen ? '0' : answer.scrollHeight + 'px';
+            icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(45deg)';
+        });
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const estimateBtns = document.querySelectorAll('.estimate-btn');
+    
+    estimateBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const calculator = this.parentElement.querySelector('.estimate-calculator');
+            if (calculator.classList.contains('hidden')) {
+                // Close all other calculators first
+                document.querySelectorAll('.estimate-calculator').forEach(calc => {
+                    calc.classList.add('hidden');
+                });
+                // Open this calculator
+                calculator.classList.remove('hidden');
+                // Change button text
+                this.textContent = 'Continue';
+            } else {
+                // Handle form submission or next step
+                window.location.href = '/get-estimate'; // Replace with your estimate page URL
+            }
+        });
+    });
+
+    // Handle button selections
+    const optionBtns = document.querySelectorAll('.estimate-calculator button');
+    optionBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Remove active class from siblings
+            this.parentElement.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-yellow-50', 'ring-2');
+            });
+            // Add active class to clicked button
+            this.classList.add('bg-yellow-50', 'ring-2');
+        });
+    });
+});
+
+// Add to your existing scripts
+function setEstimateType(type) {
+    // Add a hidden field to the contact form if it doesn't exist
+    let estimateField = document.getElementById('estimateType');
+    if (!estimateField) {
+        estimateField = document.createElement('input');
+        estimateField.type = 'hidden';
+        estimateField.id = 'estimateType';
+        document.getElementById('contactForm').appendChild(estimateField);
+    }
+    
+    // Set the estimate type
+    estimateField.value = type;
+    
+    // Update the contact form title based on selection
+    const contactTitle = document.querySelector('#contact h2');
+    const contactSubtitle = document.querySelector('#contact p');
+    
+    if (type === 'full-home') {
+        contactTitle.textContent = 'Get Full Home Interior Estimate';
+        contactSubtitle.textContent = 'Tell us about your home interior requirements';
+    } else if (type === 'kitchen') {
+        contactTitle.textContent = 'Get Modular Kitchen Estimate';
+        contactSubtitle.textContent = 'Tell us about your kitchen requirements';
+    }
+    
+    // Add a message to the textarea placeholder
+    const messageArea = document.querySelector('#contactForm textarea');
+    if (messageArea) {
+        messageArea.placeholder = type === 'full-home' 
+            ? 'Please tell us about your home interior requirements (number of rooms, preferences, etc.)'
+            : 'Please tell us about your kitchen requirements (size, layout preferences, etc.)';
+    }
+}
+
+function showAlert(message) {
+    const alert = document.getElementById('custom-alert');
+    const messageEl = document.getElementById('alert-message');
+    const alertBox = alert.querySelector('.bg-white');
+    
+    messageEl.textContent = message;
+    alert.classList.remove('hidden');
+    
+    // Trigger animation
+    setTimeout(() => {
+        alertBox.classList.add('scale-100');
+        alertBox.classList.remove('scale-0');
+    }, 10);
+}
+
+function closeAlert() {
+    const alert = document.getElementById('custom-alert');
+    const alertBox = alert.querySelector('.bg-white');
+    
+    // Trigger reverse animation
+    alertBox.classList.remove('scale-100');
+    alertBox.classList.add('scale-0');
+    
+    // Hide after animation
+    setTimeout(() => {
+        alert.classList.add('hidden');
+    }, 300);
+}
+// Typewriter text arrays
+const mainTitles = [
+    "Transform Your Space",
+    "Elevate Your Living",
+    "Design Your Dreams",
+    "Create Perfect Interiors"
+];
+
+const subTitles = [
+    "Luxury Interior Design Solutions",
+    "Where Vision Meets Reality",
+    "Crafting Beautiful Spaces",
+    "Making Dreams Come True"
+];
+
+// Initialize typewriter effect
+document.addEventListener('DOMContentLoaded', function() {
+    const mainTitle = document.getElementById('main-title');
+    const subTitle = document.getElementById('sub-title');
+    
+    if (mainTitle && subTitle) {
+        let mainTitleIndex = 0;
+        let subTitleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let currentText = '';
+
+        function type() {
+            const currentMainTitle = mainTitles[mainTitleIndex];
+            const currentSubTitle = subTitles[subTitleIndex];
+
+            if (!isDeleting) {
+                currentText = currentMainTitle.substring(0, charIndex + 1);
+                charIndex++;
+            } else {
+                currentText = currentMainTitle.substring(0, charIndex - 1);
+                charIndex--;
+            }
+
+            mainTitle.textContent = currentText;
+            subTitle.textContent = currentSubTitle;
+
+            let typeSpeed = 150;
+
+            if (isDeleting) {
+                typeSpeed /= 2;
+            }
+
+            if (!isDeleting && charIndex === currentMainTitle.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                mainTitleIndex++;
+                subTitleIndex++;
+                
+                if (mainTitleIndex === mainTitles.length) {
+                    mainTitleIndex = 0;
+                    subTitleIndex = 0;
+                }
+                
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        type();
+    }
+});
+
+    </script>
+        
+    </body>
+</html>

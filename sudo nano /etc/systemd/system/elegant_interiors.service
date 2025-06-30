@@ -1,0 +1,16 @@
+[Unit]
+Description=Elegant Interiors Gunicorn Daemon
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/elegant_interiors
+ExecStart=/var/www/elegant_interiors/venv/bin/gunicorn \
+    --access-logfile - \
+    --workers 3 \
+    --bind unix:/var/www/elegant_interiors/elegant_interiors.sock \
+    elegant_interiors.wsgi:application
+
+[Install]
+WantedBy=multi-user.target 

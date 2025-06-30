@@ -1,0 +1,128 @@
+/* Make sure submit buttons are always visible */
+.submit-row {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    z-index: 1000;
+    margin: 0;
+    text-align: right;
+}
+
+.submit-row input[type="submit"] {
+    display: inline-block !important;
+    margin-left: 10px;
+}
+
+/* Style for the top save buttons */
+.object-tools {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    padding: 10px 0;
+    margin: 0;
+} 
+
+/* New styles for CRUD operations */
+.actions-buttons {
+    white-space: nowrap;
+}
+
+.button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Style for image preview */
+#image-preview {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* Style for list view */
+#result_list {
+    width: 100%;
+}
+
+#result_list th {
+    background-color: #417690;
+    color: white;
+}
+
+#result_list tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#result_list tr:hover {
+    background-color: #f5f5f5;
+} 
+
+/* Add these styles */
+.submit-row {
+    padding: 12px 14px;
+    margin: 0 0 20px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: right;
+    overflow: hidden;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.submit-row input {
+    height: 35px;
+    line-height: 15px;
+    margin: 0 0 0 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.submit-row input.default {
+    background: #417690;
+    float: right;
+}
+
+.submit-row input[name="_continue"] {
+    background: #79aec8;
+}
+
+.submit-row input[name="_addanother"] {
+    background: #417690;
+}
+
+/* Make form fields more visible */
+.form-row {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-row label {
+    display: block;
+    padding: 0 10px 0 0;
+    font-weight: bold;
+}
+
+.form-row input[type="text"],
+.form-row textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+} 

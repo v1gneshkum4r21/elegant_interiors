@@ -1,0 +1,23 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+
+{% block object-tools %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="h4 mb-0">{{ cl.opts.verbose_name_plural|capfirst }}</h2>
+    {% block object-tools-items %}
+        {% if has_add_permission %}
+            <a href="{% url cl.opts|admin_urlname:'add' %}" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-1"></i>Add {{ cl.opts.verbose_name }}
+            </a>
+        {% endif %}
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block result_list %}
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        {{ block.super }}
+    </div>
+</div>
+{% endblock %} 

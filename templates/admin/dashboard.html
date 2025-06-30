@@ -1,0 +1,59 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Statistics Overview -->
+    <div class="stats-grid">
+        <!-- Contact Stats -->
+        <div class="stats-card">
+            <h3>Contact Statistics</h3>
+            <p>Total Contacts: {{ total_contacts }}</p>
+            <p>Pending Contacts: {{ pending_contacts }}</p>
+            <p>Recent Contacts: {{ recent_contacts }}</p>
+        </div>
+
+        <!-- Category Stats -->
+        <div class="stats-card">
+            <h3>Category Statistics</h3>
+            <p>Total Categories: {{ total_categories }}</p>
+            <p>Total Projects: {{ total_projects }}</p>
+        </div>
+
+        <!-- Visit Stats -->
+        <div class="stats-card">
+            <h3>Visit Statistics</h3>
+            <p>Total Visits: {{ total_visits }}</p>
+            <p>Today's Visits: {{ today_visits }}</p>
+            <p>Weekly Visits: {{ weekly_visits }}</p>
+        </div>
+    </div>
+
+    <!-- Recent Projects -->
+    <div class="recent-projects">
+        <h3>Recent Projects</h3>
+        <div class="project-grid">
+            {% for project in recent_projects %}
+            <div class="project-card">
+                {% if project.image %}
+                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                {% endif %}
+                <h4>{{ project.title }}</h4>
+                <p>Category: {{ project.category.title }}</p>
+                <p>Completed: {{ project.completion_date }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Popular Pages -->
+    <div class="popular-pages">
+        <h3>Popular Pages</h3>
+        <ul>
+            {% for page in popular_pages %}
+            <li>{{ page.path }} ({{ page.count }} visits)</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,19 @@
+server {
+    listen 80;
+    server_name fourthdimensions.in www.fourthdimensions.in 62.72.58.73;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    
+    location /static/ {
+        root /var/www/elegant_interiors;
+    }
+
+    location /media/ {
+        root /var/www/elegant_interiors;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/elegant_interiors/elegant_interiors.sock;
+    }
+} 
